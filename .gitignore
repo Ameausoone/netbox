@@ -29,3 +29,5 @@ netbox.pid
 .coverage
 .vscode
 .python-version
+
+.venv
