@@ -60,7 +60,6 @@ class DNSRecordValidator(CustomValidator):
                 if not isIpInVrf:
                     self.fail("The provided ip is not in VRF.", field='value')
 
-
         elif instance.type == "CNAME":
             if not instance.value.endswith("."):
                 self.fail("The value field must end with a dot ('.') for CNAME records.", field='value')

@@ -18,10 +18,8 @@ def test_create_dns_record_a_with_invalid_value(nb: pynetbox.api):
 
 def test_create_dns_record_a_with_private_ip_and_without_vrf(nb: pynetbox.api):
     zone = nb.plugins.netbox_dns.zones.get(name='app.dkt.cloud')
-    res = None
     with pytest.raises(pynetbox.RequestError) as excinfo:
-        res = nb.plugins.netbox_dns.records.create(name='test', zone =zone.id, type= 'A', value='10.10.10.24')
-    print("##res:",res)
+        nb.plugins.netbox_dns.records.create(name='test', zone =zone.id, type= 'A', value='10.10.10.24')
     assert "The VRF field is required for" in str(excinfo.value)
 
 def test_create_dns_record_a_with_unexistent_vrf(nb: pynetbox.api):
