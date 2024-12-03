@@ -1,7 +1,6 @@
 import pynetbox
 import pytest
 
-
 def test_create_dns_record_other_than_a_or_cname(nb: pynetbox.api):
     # Create a DNS record with a type other than A or CNAME
     zone = nb.plugins.netbox_dns.zones.get(name='app.dkt.cloud')
@@ -34,6 +33,3 @@ def test_create_dns_record_a_with_private_address_not_in_vrf(nb: pynetbox.api):
     with pytest.raises(pynetbox.RequestError) as excinfo:
         nb.plugins.netbox_dns.records.create(name='test', zone =zone.id, type= 'A', value='10.10.10.24',custom_fields={"cust_vrf_id":vrf.id})
     assert "The provided ip is not in VRF" in str(excinfo.value)
-    #nb.plugins.netbox_dns.records.delete(name='test')
-
-

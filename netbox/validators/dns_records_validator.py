@@ -13,17 +13,6 @@ class DNSRecordValidator(CustomValidator):
         """
         #print("Instance:", vars(instance))
         #print("Request:", vars(request))
-        #try:
-        #    from netbox_dns.models import Zone
-        #    query_zones = Zone.objects.filter(
-        #        id=instance.zone_id
-        #    )
-        #    zone = query_zones.first()
-        #    #print("Zone:", vars(zone))
-#
-        #except Exception as e:
-        #    print("Exception:", e)
-        #    self.fail("The associated zone does not exist.", field='zone')
 
         # Forbidden other record types than A and CNAME
         if instance.type not in ["A", "CNAME", "SOA"]:
